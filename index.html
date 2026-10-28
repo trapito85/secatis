@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<title>Peña Los Secatis</title>
+<style>
+:root{--bg:#f6f7f4;--card:#fff;--tx:#1d2420;--mu:#66716a;--ac:#1f7a4d;--bd:#dfe4de;--bad:#b3402f;--warn:#a86a10;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#141a16;--card:#1d2520;--tx:#e8eee9;--mu:#98a49c;--ac:#4cc38a;--bd:#2c3730;--bad:#e5806f;--warn:#e0b25a}}
+:root[data-theme="dark"]{--bg:#141a16;--card:#1d2520;--tx:#e8eee9;--mu:#98a49c;--ac:#4cc38a;--bd:#2c3730;--bad:#e5806f;--warn:#e0b25a}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,"Segoe UI",sans-serif}
+main{max-width:720px;margin:0 auto;padding:16px}
+h1{font-size:20px;margin:0 0 12px}
+nav{display:flex;gap:6px;overflow-x:auto;margin-bottom:14px}
+nav button{flex:1;white-space:nowrap}
+button,input,textarea{font:inherit;color:var(--tx);background:var(--card);border:1px solid var(--bd);border-radius:8px;padding:8px 10px}
+button{cursor:pointer}
+button.on,button.pri{background:var(--ac);border-color:var(--ac);color:#fff}
+button.del{color:var(--bad)}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px;margin-bottom:12px}
+.big{font-size:34px;font-weight:700;color:var(--ac)}.neg{color:var(--bad)}.mu{color:var(--mu);font-size:13px}.warn{color:var(--warn)}
+.row{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:6px 0;border-top:1px solid var(--bd)}
+.row:first-of-type{border-top:0}
+.f{display:flex;flex-wrap:wrap;gap:8px;align-items:end;margin-bottom:10px}
+.f label{display:flex;flex-direction:column;font-size:12px;color:var(--mu);gap:3px}
+.f input{width:110px}.f input.w{width:170px}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}
+.chip{padding:4px 10px;border-radius:999px;font-size:13px}
+.s1{border-color:var(--warn);color:var(--warn)}.s2{background:var(--ac);border-color:var(--ac);color:#fff}.s0{color:var(--mu)}
+.chip.gy{border-color:#c99a0c;color:#8a6200}
+.chip.gy.s2{background:#f2c230;border-color:#c99a0c;color:#2b2100}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip.gy{color:#f2c230;border-color:#b8921a}:root:not([data-theme="light"]) .chip.gy.s2{color:#2b2100}}
+:root[data-theme="dark"] .chip.gy{color:#f2c230;border-color:#b8921a}:root[data-theme="dark"] .chip.gy.s2{color:#2b2100}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+@media(max-width:520px){.cols{grid-template-columns:1fr}}
+.tm{border-radius:12px;padding:12px;border:1px solid}
+.tm.n{background:#1f1f1f;color:#f2f2f2;border-color:#555}
+.tm.b{background:#f6f6f6;color:#161616;border-color:#cfcfcf}
+.tm button{background:transparent;color:inherit;border-color:currentColor;padding:3px 8px;font-size:13px}
+.tm .row{border-color:rgba(128,128,128,.35)}
+.tm .mu{color:inherit;opacity:.7}
+details>summary{cursor:pointer;padding:4px 0}
+.tk:disabled{cursor:default}
+.gal{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:6px;margin:6px 0}
+.gal img{width:100%;aspect-ratio:1;object-fit:cover;border-radius:8px;cursor:pointer;background:var(--bd)}
+.upl{display:inline-block;cursor:pointer;border:1px dashed var(--ac);color:var(--ac);border-radius:8px;padding:6px 12px;margin-top:4px}
+#lb{position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.92);flex-direction:column;align-items:center;justify-content:center;gap:12px;padding:12px;box-sizing:border-box}
+#lb img{max-width:100%;max-height:76vh;border-radius:8px}
+#lb button{background:rgba(255,255,255,.12);color:#fff;border-color:rgba(255,255,255,.3)}
+.lbx{position:absolute;top:calc(12px + env(safe-area-inset-top,0px));right:12px}
+.lbn{display:flex;align-items:center;gap:12px;color:#fff}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.kpi{border:1px solid var(--bd);border-radius:10px;padding:8px 10px}.kpi b{display:block;font-size:20px}
+.bar{display:flex;height:14px;border-radius:7px;overflow:hidden;border:1px solid var(--bd);margin:4px 0}.bar i{display:block;height:100%}
+.st h4{margin:14px 0 2px;font-size:14px}
+.pitch{position:relative;width:100%;aspect-ratio:105/68;border-radius:12px;overflow:hidden;margin-top:12px;background:repeating-linear-gradient(90deg,#2e8b4f 0 9.5%,#2a8048 9.5% 19%)}
+.pitch svg{position:absolute;inset:0;width:100%;height:100%}
+.pl{position:absolute;top:6px;font-size:12px;font-weight:600;color:#fff;background:rgba(0,0,0,.4);padding:2px 8px;border-radius:999px}
+.pl.l{left:8px}.pl.r{right:8px}
+.tk{position:absolute;transform:translate(-50%,-50%);display:flex;flex-direction:column;align-items:center;gap:2px;background:transparent!important;border:0!important;padding:0;cursor:pointer}
+.tk i{width:30px;height:30px;border-radius:50%;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;font:700 13px system-ui,sans-serif}
+.tk.tn i{background:#151515;color:#fff}.tk.tb i{background:#fafafa;color:#151515;border-color:#333}
+.tk span{font-size:11px;font-weight:600;color:#fff;text-shadow:0 1px 2px #000;max-width:64px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tk.on2 i{outline:3px solid #f2c230}
+@media(max-width:520px){.tk i{width:24px;height:24px;font-size:11px}.tk span{font-size:10px;max-width:50px}}
+textarea{width:100%;height:110px;box-sizing:border-box;font:12px monospace}
+</style></head><body><main>
+<div style="display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:12px"><h1 style="margin:0">⚽ Peña Los Secatis</h1><button id="lg" onclick="login()"></button></div>
+<nav id="nav"></nav>
+<div id="st" class="mu" style="margin-bottom:10px"></div>
+<div id="lb" style="display:none"></div>
+<div id="v"><p class="mu">Cargando…</p></div>
+</main>
+<script>
+const K="pena-cuentas-v1";
+let S={cfg:{cuota:10,campo:60,precio:6,precioNS:8},players:[],matches:[],moves:[]},tab="res",cf=null,msg="";
+let RO=true,tm=null,PW=null,err="";
+const post=b=>fetch("api.php",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(b)});
+const save=()=>{clearTimeout(tm);if(RO)return;tm=setTimeout(async()=>{try{const r=await post({pass:PW,data:JSON.stringify(S)});if(r.status==401){RO=true;PW=null;tab="res";try{sessionStorage.removeItem("pw")}catch(e){}err="Contraseña no válida: sesión de editor cerrada.";R()}else if(!r.ok){err="No se pudo guardar en el NAS.";R()}else if(err){err="";R()}}catch(e){err="Sin conexión con el NAS: cambios sin guardar.";R()}},300)};
+async function load(force){try{const r=await fetch("api.php?t="+Date.now(),{cache:"no-store"});if(!r.ok)throw 0;const j=await r.json();if(j&&j.data&&(force||JSON.stringify(j.data)!==JSON.stringify(S))){S=j.data;return true}}catch(e){}return false}
+async function tryLogin(p){try{const r=await post({pass:p,check:1});if(r.ok){PW=p;RO=false;err="";try{sessionStorage.setItem("pw",p)}catch(e){}await load(true)}else{err="Contraseña incorrecta."}}catch(e){err="Sin conexión con el NAS."}R()}
+function login(){if(!RO){RO=true;PW=null;tab="res";err="";try{sessionStorage.removeItem("pw")}catch(e){}load(true).then(R);return}const p=prompt("Contraseña de editor:");if(p)tryLogin(p)}
+const $=s=>document.querySelector(s);
+const eur=n=>new Intl.NumberFormat("es-ES",{style:"currency",currency:"EUR"}).format(n||0);
+const uid=()=>Math.random().toString(36).slice(2,9);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const today=()=>new Date().toISOString().slice(0,10);
+const fd=d=>{const[y,m,x]=d.split("-");return x+"/"+m+"/"+y};
+const TABS=[["res","Resumen"],["rsl","Resultados"],["pho","Fotos"],["con","Convocatoria"],["jug","Socios"],["par","Pagos"],["mov","Gastos"],["set","Ajustes"]];
+const LBL=["—","Pendiente","Pagó"];
+const pr=(m,k)=>m.pr&&m.pr[k]!=null?m.pr[k]:m.precio;
+function ms(m){let pay=0,pen=0,col=0;for(const k in m.st){if(m.st[k]==2){pay++;col+=pr(m,k)}else if(m.st[k]==1)pen++}return{pay,pen,col,sur:col-m.coste}}
+function debts(){const d={};S.players.forEach(p=>d[p.id]={c:0,p:0,j:0});
+ S.matches.forEach(m=>{for(const k in m.st){if(!d[k]){if((m.ext||[]).some(e=>e.id==k))d[k]={c:0,p:0,j:0};else continue}if(m.st[k]>=1)d[k].j++;if(m.st[k]==1)d[k].p+=pr(m,k)}});return d}
+function totals(){const ini=S.players.reduce((a,p)=>a+(p.paid||0),0),sur=S.matches.reduce((a,m)=>a+(m.closed?ms(m).sur:0),0),oth=S.moves.reduce((a,x)=>a+x.amt,0);
+ const d=debts();let pen=0;for(const k in d)pen+=d[k].c+d[k].p;const alq=S.matches.filter(m=>!m.closed).reduce((a,m)=>a+(+m.coste||0),0);return{ini,sur,oth,pen,alq,fund:ini+sur+oth-alq}}
+function conf(k){if(cf===k){cf=null;return true}cf=k;R();return false}
+const bt=(k,t)=>cf===k?"¿Seguro?":t;
+function addP(){const n=$("#pn").value.trim();if(!n)return;S.players.push({id:uid(),name:n,paid:$("#pp").checked?S.cfg.cuota:0,fecha:$("#pp").checked?($("#pf").value||today()):""});save();R()}
+function togP(id){const p=S.players.find(x=>x.id==id);p.paid=p.paid?0:S.cfg.cuota;p.fecha=p.paid?today():"";save();R()}
+function setF(id,v){const p=S.players.find(x=>x.id==id);p.fecha=v;save()}
+let cw={};
+let cv=null,sp=null;
+let PH=[],PHB=null,pmsg="",LB=null,dpc=null;
+let OP={};
+function tgD(el,k){OP[k]=el.open}
+function pastH(m){
+ const pl=pool(m),nm=id=>(pl.find(q=>q.id==id)||{name:"?"}).name,mxn=mx(m),cap=Math.ceil(mxn/2);
+ const cf=(m.conf||[]).filter(id=>pl.some(q=>q.id==id)),tit=cf.slice(0,mxn),res=cf.slice(mxn),eq=m.eq||{};
+ if(!cf.length)return'<p class="mu">Este partido no tiene convocatoria registrada.</p>';
+ const N=tit.filter(k=>eq[k]=="N"),B=tit.filter(k=>eq[k]=="B"),S0=tit.filter(k=>!eq[k]),ls=a=>a.map(k=>esc(nm(k))).join(", ");
+ return `${m.sc?`<div style="text-align:center;font-size:22px;font-weight:700;margin:8px 0">⬛ ${m.sc.n} – ${m.sc.b} ⬜</div>`:""}${pitchH(m,N,B,cap,nm,true)}<div class="mu" style="margin-top:6px">Convocados (${tit.length}): ${ls(tit)}${S0.length?`<br>Sin equipo: ${ls(S0)}`:""}${res.length?`<br>Reserva: ${ls(res)}`:""}</div><div style="margin:8px 0"><button class="sel" onclick="exportImg('${m.id}')">📷 Exportar imagen</button></div>`}
+const fdm=p=>{const m=S.matches.find(x=>x.id==p.m);return m?fd(m.date):""};
+function lb(id){LB=id;dpc=null;lbR()}
+function lbR(){const o=$("#lb"),p=PH.find(x=>x.id==LB);if(!p){o.style.display="none";o.innerHTML="";return}
+ const L=PH.filter(x=>x.m==p.m).sort((a,b)=>a.t-b.t),i=Math.max(0,L.findIndex(x=>x.id==p.id));
+ o.innerHTML=`<button class="lbx" onclick="lb(null)">✕</button><img src="${p.url}" alt="Foto del partido"><div class="lbn"><button onclick="lb('${L[(i-1+L.length)%L.length].id}')">‹</button><span>${fdm(p)} · ${i+1}/${L.length}</span><button onclick="lb('${L[(i+1)%L.length].id}')">›</button>${PHB&&PHB.canDel?`<button onclick="delPh('${p.id}')">${dpc==p.id?"¿Seguro?":"🗑"}</button>`:""}</div>`;o.style.display="flex"}
+async function delPh(id){if(dpc!=id){dpc=id;lbR();return}dpc=null;const p=PH.find(x=>x.id==id);if(!p||!PHB)return;const nx=PH.filter(x=>x.m==p.m&&x.id!=id)[0];try{await PHB.del(p);PH=PH.filter(x=>x.id!=id);pmsg=""}catch(e){pmsg="No se pudo borrar la foto."}LB=nx?nx.id:null;try{await PHB.load()}catch(e){}R();lbR()}
+async function resizeImg(f,max=1600){try{const bm=await createImageBitmap(f),k=Math.min(1,max/Math.max(bm.width,bm.height)),c=document.createElement("canvas");c.width=Math.round(bm.width*k);c.height=Math.round(bm.height*k);c.getContext("2d").drawImage(bm,0,0,c.width,c.height);const b=await new Promise(r=>c.toBlob(r,"image/jpeg",.82));if(b)return b}catch(e){}if(f.size>8e6)throw new Error("la imagen es demasiado grande");return f}
+async function upl(mid,inp){const f=inp.files&&inp.files[0];inp.value="";if(!f||!PHB)return;pmsg="Subiendo foto…";R();try{const b=await resizeImg(f);await PHB.up(b,mid);pmsg=""}catch(e){pmsg="No se pudo subir la foto"+(e&&e.message?": "+e.message:".")}try{await PHB.load()}catch(e){}R()}
+function phTab(){
+ const up=mid=>PHB&&PHB.canUp?`<div><label class="upl">➕ Subir foto<input type="file" accept="image/*" hidden onchange="upl('${mid}',this)"></label></div>`:"";
+ const g=l=>`<div class="gal">${l.map(p=>`<img src="${p.url}" loading="lazy" onclick="lb('${p.id}')" alt="Foto del partido">`).join("")}</div>`;
+ const nf=n=>n+" foto"+(n==1?"":"s");
+ const ms=[...S.matches].sort((a,b)=>b.date.localeCompare(a.date)).filter(m=>PH.some(p=>p.m==m.id)||(PHB&&PHB.canUp));
+ const orph=PH.filter(p=>!S.matches.some(m=>m.id==p.m)).sort((a,b)=>a.t-b.t);
+ let o=`<div class="mu" style="margin-bottom:8px">${nf(PH.length)} · agrupadas por partido</div>${pmsg?`<div class="warn" style="margin-bottom:8px">${esc(pmsg)}</div>`:""}`;
+ ms.forEach(m=>{const l=PH.filter(p=>p.m==m.id).sort((a,b)=>a.t-b.t);o+=`<div class="card"><div class="row"><b>${fd(m.date)}${m.closed?" · ✓ Cerrado":""}</b><span class="mu">${m.sc?"⬛ "+m.sc.n+"–"+m.sc.b+" ⬜ · ":""}${nf(l.length)}</span></div>${l.length?g(l):'<p class="mu">Sin fotos todavía.</p>'}${up(m.id)}</div>`});
+ if(orph.length)o+=`<div class="card"><div class="row"><b>Partido eliminado</b><span class="mu">${nf(orph.length)}</span></div>${g(orph)}</div>`;
+ if(!ms.length&&!orph.length)o+='<div class="card"><p class="mu">Todavía no hay partidos con fotos.</p></div>';
+ return o}
+function setSc(mid,k,v){const M=S.matches.find(q=>q.id==mid);M.sc=M.sc||{n:0,b:0};M.sc[k]=Math.max(0,Math.round(+v)||0);save();R()}
+function delSc(mid){const M=S.matches.find(q=>q.id==mid);if(!conf("sc"+mid))return;delete M.sc;delete M.gol;save();R()}
+function goal(mid,id,d){const M=S.matches.find(q=>q.id==mid);M.gol=M.gol||{};const n=Math.max(0,(M.gol[id]||0)+d);if(n)M.gol[id]=n;else delete M.gol[id];save();R()}
+function statsH(){
+ const L=S.matches.filter(m=>m.sc).sort((a,b)=>a.date.localeCompare(b.date));
+ if(!L.length)return`<div class="card"><b>Estadísticas</b><p class="mu">Cuando guardes el primer resultado aparecerán aquí las estadísticas.</p></div>`;
+ const P={},who=(m,id)=>{const p=S.players.find(q=>q.id==id);if(p)return{k:id,n:p.name};const e=(m.ext||[]).find(q=>q.id==id);const n=e?e.name:"?";return{k:"i:"+n,n:n+" (inv.)"}};
+ const get=w=>P[w.k]||(P[w.k]={n:w.n,g:0,pj:0,w:0,d:0,l:0});
+ let gt=0,wn=0,wb=0,dr=0,big=null,most=null,hat=null;
+ L.forEach(m=>{const a=m.sc.n,b=m.sc.b,tg=a+b;gt+=tg;const win=a>b?"N":b>a?"B":"D";if(win=="N")wn++;else if(win=="B")wb++;else dr++;
+  if(!big||Math.abs(a-b)>big.d)big={d:Math.abs(a-b),m};
+  if(!most||tg>most.t)most={t:tg,m};
+  Object.entries(m.gol||{}).forEach(([id,n])=>{const p=get(who(m,id));p.g+=n;if(!hat||n>hat.n)hat={n,p:p.n,m}});
+  Object.entries(m.eq||{}).forEach(([id,t])=>{const p=get(who(m,id));p.pj++;if(win=="D")p.d++;else if(win==t)p.w++;else p.l++})});
+ const arr=Object.values(P),tot=L.length;
+ const top=(f,s,n)=>arr.filter(f).sort(s).slice(0,n);
+ const sg=top(p=>p.g>0,(a,b)=>b.g-a.g||a.n.localeCompare(b.n),5);
+ const sw=top(p=>p.w>0,(a,b)=>b.w-a.w||b.w/b.pj-a.w/a.pj||a.n.localeCompare(b.n),5);
+ const spj=top(p=>p.pj>0,(a,b)=>b.pj-a.pj||a.n.localeCompare(b.n),3);
+ const pct=top(p=>p.pj>=2,(a,b)=>b.w/b.pj-a.w/a.pj||b.pj-a.pj,3);
+ const ties=(l,k)=>l.filter(p=>p[k]==l[0][k]).map(p=>p.n).join(", ");
+ const li=(l,f)=>l.map((p,i)=>`<div class="row"><span>${i+1}. ${esc(p.n)}</span><b>${f(p)}</b></div>`).join("");
+ const nn=(n,s,p)=>n+" "+(n==1?s:p),pc=n=>n/tot*100,sc=m=>fd(m.date)+" ("+m.sc.n+"–"+m.sc.b+")";
+ const kp=(t,v)=>`<div class="kpi"><span class="mu">${t}</span><b>${v}</b></div>`;
+ const noEq='<p class="mu">Asigna equipos en Convocatoria para calcular esto.</p>';
+ return `<div class="card st"><b>Estadísticas</b>
+ <div class="kpis" style="margin-top:8px">${kp("Partidos",tot)}${kp("Goles",gt)}${kp("Goles por partido",(gt/tot).toFixed(1).replace(".",","))}</div>
+ <h4>¿Qué camiseta gana más?</h4>
+ <div class="bar"><i style="width:${pc(wn)}%;background:#151515"></i><i style="width:${pc(dr)}%;background:#9aa39d"></i><i style="width:${pc(wb)}%;background:#fafafa"></i></div>
+ <div class="row"><span>⬛ Camiseta negra</span><b>${nn(wn,"victoria","victorias")}</b></div><div class="row"><span>⬜ Camiseta blanca</span><b>${nn(wb,"victoria","victorias")}</b></div><div class="row"><span>Empates</span><b>${dr}</b></div>
+ <h4>🥇 Máximo goleador</h4>${sg.length?`<p style="margin:2px 0"><b>${esc(ties(sg,"g"))}</b> · ${nn(sg[0].g,"gol","goles")}</p>${li(sg,p=>nn(p.g,"gol","goles"))}`:'<p class="mu">Aún no hay goleadores registrados.</p>'}
+ <h4>🏆 Más victorias individuales</h4>${sw.length?`<p style="margin:2px 0"><b>${esc(ties(sw,"w"))}</b> · ${nn(sw[0].w,"victoria","victorias")}</p>${li(sw,p=>p.w+" V de "+p.pj)}`:(arr.some(p=>p.pj>0)?'<p class="mu">Aún no hay victorias registradas.</p>':noEq)}
+ <h4>Más datos</h4>
+ <div class="row"><span>Mayor goleada</span><b>${big.d?sc(big.m):"—"}</b></div>
+ <div class="row"><span>Partido con más goles</span><b>${sc(most.m)}</b></div>
+ <div class="row"><span>Más goles de un jugador en un partido</span><b>${hat?esc(hat.p)+" · "+hat.n:"—"}</b></div>
+ <div class="row"><span>Más partidos jugados</span><b>${spj.length?esc(ties(spj,"pj"))+" · "+spj[0].pj:"—"}</b></div>
+ <div class="row"><span>Mejor % de victorias (mín. 2 partidos)</span><b>${pct.length?esc(pct[0].n)+" · "+Math.round(pct[0].w/pct[0].pj*100)+"%":"—"}</b></div></div>`}
+async function saveBlob(blob,name){
+ try{if(typeof claude!=="undefined"&&claude.use){const d=await claude.use("downloads");if(d){await d.save({filename:name,data:blob});return}}}catch(e){if(e&&e.code=="declined")return}
+ try{const f=new File([blob],name,{type:"image/png"});if(navigator.canShare&&navigator.canShare({files:[f]})){await navigator.share({files:[f],title:"Convocatoria"});return}}catch(e){if(e&&e.name=="AbortError")return}
+ const u=URL.createObjectURL(blob),a=document.createElement("a");a.href=u;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)}
+async function exportImg(mid){
+ const m=S.matches.find(q=>q.id==mid);if(!m)return;
+ const mxn=mx(m),cap=Math.ceil(mxn/2),pl=pool(m),nm=id=>(pl.find(q=>q.id==id)||{name:"?"}).name;
+ const cf=(m.conf||[]).filter(id=>pl.some(q=>q.id==id)),tit=cf.slice(0,mxn),res=cf.slice(mxn),eq=m.eq||{};
+ if(!tit.length){cw["e"+mid]="No hay convocados para exportar.";R();return}
+ const N=tit.filter(k=>eq[k]=="N"),B=tit.filter(k=>eq[k]=="B"),S0=tit.filter(k=>!eq[k]);
+ const W=1080,P=40,PW=W-2*P,PH=Math.round(PW*68/105),F='system-ui,-apple-system,"Segoe UI",sans-serif';
+ const cvs=document.createElement("canvas"),g=cvs.getContext("2d");
+ const wrap=(t,w,font)=>{g.font=font;const ws=t.split(" "),ls=[];let l="";ws.forEach(a=>{const tr=l?l+" "+a:a;if(g.measureText(tr).width>w&&l){ls.push(l);l=a}else l=tr});if(l)ls.push(l);return ls};
+ const foot=[["Convocados ("+tit.length+"/"+mxn+")",tit.map(nm).join(", ")]];
+ if(S0.length)foot.push(["Sin equipo",S0.map(nm).join(", ")]);
+ if(res.length)foot.push(["Reserva",res.map(nm).join(", ")]);
+ const LH=30,fl=[];foot.forEach(([a,b])=>wrap(a+": "+b,PW,"22px "+F).forEach(l=>fl.push(l)));
+ const H=P+90+PH+24+fl.length*LH+60;
+ cvs.width=W;cvs.height=H;
+ g.fillStyle="#10261a";g.fillRect(0,0,W,H);
+ g.textBaseline="alphabetic";g.textAlign="left";
+ g.fillStyle="#fff";g.font="700 40px "+F;g.fillText("Convocatoria · "+fd(m.date),P,P+40);
+ g.fillStyle="#9fd3b0";g.font="22px "+F;g.fillText(tit.length+" convocados · equipos de hasta "+cap,P,P+76);
+ const px=P,py=P+90;
+ for(let i=0;i<10;i++){g.fillStyle=i%2?"#2a8048":"#2e8b4f";g.fillRect(px+PW*i/10,py,PW/10+1,PH)}
+ const sx=PW/105,sy=PH/68;g.strokeStyle="rgba(255,255,255,.8)";g.lineWidth=3;
+ const rc=(a,b,c,d)=>g.strokeRect(px+a*sx,py+b*sy,c*sx,d*sy);
+ rc(2,2,101,64);rc(2,13.9,16.5,40.2);rc(86.5,13.9,16.5,40.2);rc(2,24.8,5.5,18.4);rc(95.5,24.8,5.5,18.4);
+ g.beginPath();g.moveTo(px+52.5*sx,py+2*sy);g.lineTo(px+52.5*sx,py+66*sy);g.stroke();
+ g.beginPath();g.ellipse(px+52.5*sx,py+34*sy,9.15*sx,9.15*sy,0,0,Math.PI*2);g.stroke();
+ const lab=(t,left)=>{g.font="700 22px "+F;const w=g.measureText(t).width+24,bx=left?px+14:px+PW-14-w;g.fillStyle="rgba(0,0,0,.45)";g.beginPath();if(g.roundRect)g.roundRect(bx,py+12,w,34,17);else g.rect(bx,py+12,w,34);g.fill();g.fillStyle="#fff";g.fillText(t,bx+12,py+36)};
+ lab("NEGRA "+N.length+"/"+cap,true);lab("BLANCA "+B.length+"/"+cap,false);
+ const tok=(ids,left)=>{const rows=fm(ids.length);let c=0;rows.forEach((n,ri)=>{const x0=left?9:91,x1=left?44:56,xp=rows.length>1?x0+(x1-x0)*ri/(rows.length-1):x0;for(let i=0;i<n;i++){const id=ids[c++],yp=(i+1)/(n+1)*100,cx=px+PW*xp/100,cy=py+PH*yp/100,full=nm(id),fn=full.split(" ")[0];
+  g.beginPath();g.arc(cx,cy,28,0,Math.PI*2);g.fillStyle=left?"#151515":"#fafafa";g.fill();g.lineWidth=4;g.strokeStyle=left?"#fff":"#333";g.stroke();
+  g.textAlign="center";g.textBaseline="middle";g.fillStyle=left?"#fff":"#151515";g.font="700 26px "+F;g.fillText(full.charAt(0).toUpperCase(),cx,cy+1);
+  g.textBaseline="alphabetic";g.font="700 22px "+F;g.lineWidth=5;g.strokeStyle="rgba(0,0,0,.7)";g.strokeText(fn,cx,cy+56);g.fillStyle="#fff";g.fillText(fn,cx,cy+56);g.textAlign="left"}})};
+ tok(N,true);tok(B,false);
+ let y=py+PH+24+LH-6;g.fillStyle="#d8efe0";g.font="22px "+F;fl.forEach(l=>{g.fillText(l,P,y);y+=LH});
+ g.fillStyle="#6fa384";g.font="18px "+F;g.textAlign="right";g.fillText("Peña Los Secatis",W-P,H-22);g.textAlign="left";
+ const blob=await new Promise(r=>cvs.toBlob(r,"image/png"));if(!blob)return;
+ await saveBlob(blob,"convocatoria-"+m.date+".png")}
+function selP(id){sp=sp==id?null:id;R()}
+function fm(n){const k=n-1,l=k<=0?0:k<=3?1:k<=6?2:3;const r=[];if(n>0)r.push(1);if(l){const b=Math.floor(k/l),e=k%l;for(let i=0;i<l;i++)r.push(b+(i<e?1:0))}return r}
+function pitchH(m,N,B,cap,nm,ro){
+ const tok=(ids,left)=>{const rows=fm(ids.length);let o="",c=0;rows.forEach((n,ri)=>{const x0=left?9:91,x1=left?44:56,x=rows.length>1?x0+(x1-x0)*ri/(rows.length-1):x0;for(let i=0;i<n;i++){const id=ids[c++],y=(i+1)/(n+1)*100,full=nm(id);o+=`<button class="tk ${left?"tn":"tb"}${!ro&&sp==id?" on2":""}" style="left:${x}%;top:${y}%"${ro?" disabled":` onclick="selP('${id}')"`} title="${esc(full)}"><i>${esc(full.charAt(0).toUpperCase())}</i><span>${esc(full.split(" ")[0])}</span></button>`}});return o};
+ return `<div class="pitch"><svg viewBox="0 0 105 68" preserveAspectRatio="none" fill="none" stroke="#fff" stroke-opacity=".75" stroke-width=".5"><rect x="2" y="2" width="101" height="64"/><line x1="52.5" y1="2" x2="52.5" y2="66"/><circle cx="52.5" cy="34" r="9.15"/><rect x="2" y="13.9" width="16.5" height="40.2"/><rect x="86.5" y="13.9" width="16.5" height="40.2"/><rect x="2" y="24.8" width="5.5" height="18.4"/><rect x="95.5" y="24.8" width="5.5" height="18.4"/><rect x="0" y="29.8" width="2" height="8.4"/><rect x="103" y="29.8" width="2" height="8.4"/></svg><div class="pl l">⬛ Negra ${N.length}/${cap}</div><div class="pl r">⬜ Blanca ${B.length}/${cap}</div>${tok(N,true)}${tok(B,false)}</div>`}
+const mx=m=>m.max||S.cfg.max||10;
+function pool(m){return[...S.players.map(p=>({id:p.id,name:p.name})),...(m.ext||[]).map(e=>({id:e.id,name:e.name,g:1}))].sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"}))}
+function selC(id){cv=id;R()}
+function togC(mid,id){const M=S.matches.find(x=>x.id==mid);M.conf=M.conf||[];M.eq=M.eq||{};const i=M.conf.indexOf(id);if(i>=0){M.conf.splice(i,1);delete M.eq[id]}else M.conf.push(id);save();R()}
+function setMax(mid,v){const M=S.matches.find(x=>x.id==mid);M.max=Math.max(2,Math.round(+v)||10);const t=(M.conf||[]).slice(0,M.max);Object.keys(M.eq||{}).forEach(k=>{if(!t.includes(k))delete M.eq[k]});save();R()}
+function mvE(mid,id,t){const M=S.matches.find(x=>x.id==mid);M.eq=M.eq||{};if(t){const cap=Math.ceil(mx(M)/2);if(M.eq[id]!=t&&Object.values(M.eq).filter(v=>v==t).length>=cap){cw["e"+mid]="Ese equipo está completo ("+cap+" jugadores).";R();return}M.eq[id]=t}else delete M.eq[id];delete cw["e"+mid];save();R()}
+function sortE(mid){const M=S.matches.find(x=>x.id==mid);const t=(M.conf||[]).slice(0,mx(M));for(let i=t.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[t[i],t[j]]=[t[j],t[i]]}M.eq={};t.forEach((k,i)=>M.eq[k]=i%2?"B":"N");delete cw["e"+mid];save();R()}
+function toPar(mid){const M=S.matches.find(x=>x.id==mid);(M.conf||[]).slice(0,mx(M)).forEach(k=>{if(!M.st[k]){snap(M,k);M.st[k]=1}});save();R()}
+function closeM(id){const M=S.matches.find(x=>x.id==id);const s=ms(M);if(!s.pay){cw[id]="No hay cobros registrados: no se puede cerrar.";R();return}if(s.pen){cw[id]="Aún hay "+s.pen+" pendiente(s) de pago.";R();return}delete cw[id];M.closed=true;M.closedAt=today();save();R()}
+function reopenM(id){const M=S.matches.find(x=>x.id==id);if(!conf("o"+id))return;M.closed=false;delete M.closedAt;save();R()}
+function addG(mid){const M=S.matches.find(x=>x.id==mid);if(M.closed)return;const n=$("#g"+mid).value.trim();if(!n)return;const id=uid();M.ext=M.ext||[];M.ext.push({id,name:n});snap(M,id);M.st[id]=1;save();R()}
+function delP(id){if(!conf("p"+id))return;S.players=S.players.filter(x=>x.id!=id);S.matches.forEach(m=>{delete m.st[id];m.conf=(m.conf||[]).filter(k=>k!=id);if(m.eq)delete m.eq[id]});save();R()}
+function addM(){S.matches.push({id:uid(),date:$("#md").value||today(),coste:+$("#mc").value||0,precio:+$("#mp").value||0,precioNS:+$("#mn").value||0,max:+$("#mx").value||S.cfg.max||10,conf:[],eq:{},st:{},pr:{}});save();R()}
+const soc=id=>{const p=S.players.find(x=>x.id==id);return !!(p&&p.paid)};
+const snap=(M,id)=>{M.pr=M.pr||{};M.pr[id]=soc(id)?M.precio:(M.precioNS??M.precio)};
+function cyc(m,p){const M=S.matches.find(x=>x.id==m);if(M.closed)return;delete cw[m];const v=((M.st[p]||0)+1)%3;if((M.ext||[]).some(e=>e.id==p)&&v==0){M.ext=M.ext.filter(e=>e.id!=p);delete M.st[p];if(M.pr)delete M.pr[p];save();R();return}if(!M.st[p])snap(M,p);M.st[p]=v;save();R()}
+function allPaid(m){const M=S.matches.find(x=>x.id==m);if(M.closed)return;delete cw[m];S.players.forEach(p=>{if(!M.st[p.id])snap(M,p.id);M.st[p.id]=2});save();R()}
+function delM(id){if(!conf("m"+id))return;S.matches=S.matches.filter(x=>x.id!=id);save();R()}
+function addX(){const c=$("#xc").value.trim(),a=parseFloat($("#xa").value);if(!c||isNaN(a))return;S.moves.push({id:uid(),date:$("#xd").value||today(),concept:c,amt:a});save();R()}
+function delX(id){if(!conf("x"+id))return;S.moves=S.moves.filter(x=>x.id!=id);save();R()}
+function setC(k,v){S.cfg[k]=+v||0;save()}
+function imp(){try{const o=JSON.parse($("#ta").value);if(!o.players||!o.matches||!o.moves||!o.cfg)throw 0;S=o;save();msg="Datos cargados.";R()}catch(e){msg="No se pudo leer: el texto no es una copia válida.";R()}}
+function reset(){if(!conf("reset"))return;S={cfg:S.cfg,players:[],matches:[],moves:[]};save();msg="Todo borrado.";R()}
+function R(){
+ $("#nav").innerHTML=TABS.filter(t=>!(RO&&t[0]=="set")).map(t=>`<button class="${t[0]==tab?"on":""}" onclick="tab='${t[0]}';cf=null;msg='';R()">${t[1]}</button>`).join("");
+ let h="";const T=totals(),D=debts();
+ if(tab=="res"){
+  h+=`<div class="card"><div class="mu">Fondo común</div><div class="big ${T.fund<0?"neg":""}">${eur(T.fund)}</div>
+  <div class="row"><span>Cuotas iniciales cobradas</span><b>${eur(T.ini)}</b></div>
+  
+  <div class="row"><span>Sobrante de partidos (lo cobrado − campo)</span><b class="${T.sur<0?"neg":""}">${eur(T.sur)}</b></div>
+  <div class="row"><span>Otros movimientos</span><b>${eur(T.oth)}</b></div>
+  ${T.alq?`<div class="row"><span>Campo alquilado (partido en curso)</span><b class="neg">−${eur(T.alq)}</b></div>`:""}
+  <div class="row"><span>Pendiente de cobro</span><b class="warn">${eur(T.pen)}</b></div></div>`;
+  h+=`<div class="card"><b>Quién debe qué</b>`;
+  if(!S.players.length)h+=`<p class="mu">Añade jugadores en la pestaña Socios.</p>`;
+  S.players.forEach(p=>{const d=D[p.id],t=d.c+d.p;h+=`<div class="row"><span>${esc(p.name)}<br><span class="mu">${d.j} partidos${p.paid?" · socio":" · no socio"}</span></span><b class="${t?"warn":""}">${t?eur(t):"Al día ✓"}</b></div>`});
+  h+=`</div>`;
+ }
+ if(tab=="jug"){
+  h+=`<div class="card"><div class="f"><label>Nombre<input class="w" id="pn"></label><label>Socio · cuota inicial (${eur(S.cfg.cuota)})<span><input type="checkbox" id="pp" style="width:auto"> ya pagada</span></label><label>Fecha de pago<input type="date" id="pf" value="${today()}"></label><button class="pri" onclick="addP()">Añadir</button></div>`;
+  [...S.players].sort((a,b)=>a.name.localeCompare(b.name,"es",{sensitivity:"base"})).forEach(p=>{h+=`<div class="row"><span>${esc(p.name)}</span><span>${p.paid?`<input type="date" value="${p.fecha||""}" title="Fecha de pago" onchange="setF('${p.id}',this.value)" style="width:140px"> `:""}<button class="${p.paid?"s2":"s1"}" onclick="togP('${p.id}')">${p.paid?"Socio · "+eur(p.paid):"No socio"}</button> <button class="del" onclick="delP('${p.id}')">${bt("p"+p.id,"Borrar")}</button></span></div>`});
+  if(!S.players.length)h+=`<p class="mu">Aún no hay jugadores.</p>`;
+  h+=`</div>`;
+ }
+ if(tab=="par"){
+  h+=`<div class="card"><b>Nuevo partido</b><div class="f"><label>Fecha<input type="date" id="md" value="${today()}"></label><label>Coste campo (€)<input type="number" step="0.01" id="mc" value="${S.cfg.campo}"></label><label>Precio socio (€)<input type="number" step="0.01" id="mp" value="${S.cfg.precio}"></label><label>Precio no socio (€)<input type="number" step="0.01" id="mn" value="${S.cfg.precioNS??S.cfg.precio}"></label><label>Máx. jugadores<input type="number" id="mx" value="${S.cfg.max||10}" style="width:90px"></label><button class="pri" onclick="addM()">Crear</button></div></div>`;
+  [...S.matches].sort((a,b)=>b.date.localeCompare(a.date)).forEach(m=>{const s=ms(m);
+   h+=`<div class="card"><div class="row"><b>${fd(m.date)}${m.closed?" · ✓ Cerrado":""}</b><span class="mu">campo ${eur(m.coste)} · socio ${eur(m.precio)} · no socio ${eur(m.precioNS??m.precio)}</span></div>
+   <div class="chips">${[...S.players,...(m.ext||[]).map(e=>({id:e.id,name:e.name+" (invitado)",g:1}))].map(p=>{const v=m.st[p.id]||0;return`<button class="chip s${v}${p.g?" gy":""}" onclick="cyc('${m.id}','${p.id}')">${esc(p.name)}: ${LBL[v]}</button>`}).join("")||'<span class="mu">Añade jugadores primero.</span>'}</div>
+   ${m.closed?"":`<div class="f"><label>Invitado externo<input class="w" id="g${m.id}" placeholder="Nombre"></label><button onclick="addG('${m.id}')">Añadir invitado</button></div>`}
+   <div class="row"><span>Cobrado ${eur(s.col)}${s.pen?` · <span class="warn">${s.pen} pendiente(s)</span>`:""}</span>${m.closed?`<b class="${s.sur<0?"neg":""}">${s.sur<0?"Falta":"Al fondo"} ${eur(Math.abs(s.sur))}</b>`:`<b class="mu">${s.pay?(s.pen?"Faltan cobros":"Listo para cerrar"):"Sin cobros aún"}</b>`}</div>
+   ${cw[m.id]?`<div class="row"><span class="warn">${cw[m.id]}</span></div>`:""}<div class="row">${m.closed?`<button onclick="reopenM('${m.id}')">${bt("o"+m.id,"Reabrir partido")}</button>`:`<span><button onclick="allPaid('${m.id}')">Todos pagaron</button> <button class="pri" onclick="closeM('${m.id}')">Cerrar partido</button></span>`}<button class="del" onclick="delM('${m.id}')">${bt("m"+m.id,"Borrar partido")}</button></div></div>`});
+  if(!S.matches.length)h+=`<p class="mu">Toca el nombre de cada jugador para cambiar: — (no vino) → Pendiente → Pagó.</p>`;
+ }
+ if(tab=="con"){
+ const op=S.matches.filter(m=>!m.closed).sort((a,b)=>b.date.localeCompare(a.date));
+ if(!op.length)h+=`<div class="card"><p class="mu">No hay partidos abiertos. Crea uno en la pestaña Pagos.</p></div>`;
+ else{
+  if(!op.some(m=>m.id==cv))cv=op[0].id;
+  const m=op.find(x=>x.id==cv),mxn=mx(m),cap=Math.ceil(mxn/2),pl=pool(m),nm=id=>(pl.find(x=>x.id==id)||{name:"?"}).name;
+  const cf2=(m.conf||[]).filter(id=>pl.some(x=>x.id==id)),tit=cf2.slice(0,mxn),res=cf2.slice(mxn),eq=m.eq||{};
+  const N=tit.filter(k=>eq[k]=="N"),B=tit.filter(k=>eq[k]=="B"),S0=tit.filter(k=>!eq[k]);
+  const rw=(id,btns)=>`<div class="row"><span>${esc(nm(id))}</span><span>${btns}</span></div>`;
+  const mv=(id,t,l)=>`<button onclick="mvE('${m.id}','${id}',${t?`'${t}'`:"null"})">${l}</button>`;
+  h+=`<div class="chips">${op.map(x=>`<button class="chip sel ${x.id==cv?"s2":"s0"}" onclick="selC('${x.id}')">${fd(x.date)}</button>`).join("")}</div>`;
+  h+=`<div class="card"><b>Convocatoria · ${fd(m.date)}</b><div class="mu">Máximo ${mxn} jugadores · ${cf2.length} confirmados${res.length?` (${res.length} en reserva)`:""} · equipos de hasta ${cap}</div>
+  <div class="chips">${pl.map(p=>{const i=cf2.indexOf(p.id);const c=i<0?"s0":i<mxn?"s2":"s1";return`<button class="chip ${c}${p.g?" gy":""}" onclick="togC('${m.id}','${p.id}')">${esc(p.name)}${i>=mxn?" (reserva)":""}</button>`}).join("")||'<span class="mu">Añade jugadores en la pestaña Socios.</span>'}</div>
+  <div class="mu">Verde: confirmado · Naranja: en reserva · Gris: sin confirmar</div></div>`;
+  h+=`${cw["e"+m.id]?`<p class="warn">${cw["e"+m.id]}</p>`:""}${pitchH(m,N,B,cap,nm)}${RO?"":(sp&&(eq[sp]=="N"||eq[sp]=="B")?`<div class="card" style="margin-top:12px"><div class="row"><b>${esc(nm(sp))}</b><span>${eq[sp]=="N"?mv(sp,"B","→ Pasar a Blanca"):mv(sp,"N","← Pasar a Negra")} ${mv(sp,null,"Quitar del equipo")}</span></div></div>`:`<p class="mu">Toca a un jugador del campo para moverlo de equipo.</p>`)}
+  <div class="card" style="margin-top:12px"><b>Sin equipo</b> <span class="mu">${S0.length}</span>${S0.map(k=>rw(k,mv(k,"N","⬛ Negra")+" "+mv(k,"B","⬜ Blanca"))).join("")||'<div class="mu">Todos los convocados tienen equipo.</div>'}${res.length?`<div class="mu" style="margin-top:8px">Reserva: ${res.map(k=>esc(nm(k))).join(", ")}</div>`:""}</div>
+  <div style="margin:10px 0"><button class="sel" onclick="exportImg('${m.id}')">📷 Exportar imagen</button></div>
+  <div class="f"><label>Máx. jugadores<input type="number" value="${mxn}" onchange="setMax('${m.id}',this.value)" style="width:90px"></label><button onclick="sortE('${m.id}')">🎲 Sortear equipos</button><button onclick="toPar('${m.id}')">Pasar convocados a Pagos</button></div>`;
+ }
+ const past=S.matches.filter(m=>m.closed).sort((a,b)=>b.date.localeCompare(a.date));
+ if(past.length)h+=`<details class="card" style="margin-top:12px"${OP.all?" open":""} ontoggle="tgD(this,'all')"><summary><b>Convocatorias anteriores</b> <span class="mu">${past.length}</span></summary>${past.map(m=>`<details style="margin-top:8px"${OP[m.id]?" open":""} ontoggle="tgD(this,'${m.id}')"><summary>${fd(m.date)}${m.sc?` · ⬛ ${m.sc.n}–${m.sc.b} ⬜`:""}</summary>${pastH(m)}</details>`).join("")}</details>`;
+}
+if(tab=="rsl"){
+ const L=[...S.matches].sort((a,b)=>b.date.localeCompare(a.date));
+ if(!L.length)h+=`<div class="card"><p class="mu">Aún no hay partidos. Crea uno en la pestaña Pagos.</p></div>`;
+ L.forEach(m=>{
+  const pl=pool(m),nm=id=>(pl.find(q=>q.id==id)||{name:"?"}).name,sc=m.sc,eq=m.eq||{},gl=Object.entries(m.gol||{}).sort((a,b)=>b[1]-a[1]);
+  const cf=(m.conf||[]).filter(id=>pl.some(q=>q.id==id)).slice(0,mx(m)),cand=cf.length?cf:pl.map(q=>q.id);
+  const win=sc?(sc.n>sc.b?"Gana la negra":sc.b>sc.n?"Gana la blanca":"Empate"):"Sin resultado";
+  const gn=gl.reduce((a,[id,n])=>a+(eq[id]=="N"?n:0),0),gb=gl.reduce((a,[id,n])=>a+(eq[id]=="B"?n:0),0);
+  const colH=t=>gl.filter(([id])=>eq[id]==t).map(([id,n])=>`<div class="row"><span>${esc(nm(id))} ${"⚽".repeat(Math.min(n,6))}${n>6?" ×"+n:""}</span><button onclick="goal('${m.id}','${id}',-1)">−</button></div>`).join("")||'<div class="mu">—</div>',ns=gl.filter(([id])=>!eq[id]);
+  h+=`<div class="card"><div class="row"><b>${fd(m.date)}${m.closed?" · ✓ Cerrado":""}</b><span class="mu">${win}</span></div>
+  ${sc?`<div style="text-align:center;font-size:30px;font-weight:700;margin:8px 0">⬛ ${sc.n} – ${sc.b} ⬜</div>`:""}
+  ${gl.length?`<div class="cols" style="margin-top:8px"><div class="tm n"><b>⬛ Negra</b> <span class="mu">${gn} gol${gn==1?"":"es"}</span>${colH("N")}</div><div class="tm b"><b>⬜ Blanca</b> <span class="mu">${gb} gol${gb==1?"":"es"}</span>${colH("B")}</div></div>${ns.length?`<div class="mu" style="margin-top:6px">Sin equipo asignado: ${ns.map(([id,n])=>esc(nm(id))+" ⚽"+(n>1?" ×"+n:"")+` <button onclick="goal('${m.id}','${id}',-1)">−</button>`).join(" · ")}</div>`:""}`:""}
+  ${sc&&gl.length&&Object.keys(eq).length&&(gn!=sc.n||gb!=sc.b)?`<div class="mu">Goles asignados: negra ${gn}/${sc.n} · blanca ${gb}/${sc.b}</div>`:""}
+  <div class="f" style="margin-top:8px"><label>Goles negra<input type="number" min="0" value="${sc?sc.n:""}" onchange="setSc('${m.id}','n',this.value)" style="width:80px"></label><label>Goles blanca<input type="number" min="0" value="${sc?sc.b:""}" onchange="setSc('${m.id}','b',this.value)" style="width:80px"></label>${sc?`<button class="del" onclick="delSc('${m.id}')">${bt("sc"+m.id,"Borrar resultado")}</button>`:""}</div>
+  <div class="f"><span class="mu">Añadir gol:</span>${cand.map(id=>`<button class="chip s0" onclick="goal('${m.id}','${id}',1)">⚽ ${esc(nm(id).split(" ")[0])}</button>`).join("")}</div></div>`});
+ h+=statsH();
+}
+if(tab=="pho")h+=phTab();
+if(tab=="mov"){
+  h+=`<div class="card"><b>Ingreso o gasto extra</b><p class="mu">Importe positivo = ingreso al fondo; negativo = gasto (balones, petos, cena…).</p><div class="f"><label>Concepto<input class="w" id="xc"></label><label>Importe (€)<input type="number" step="0.01" id="xa"></label><label>Fecha<input type="date" id="xd" value="${today()}"></label><button class="pri" onclick="addX()">Añadir</button></div>`;
+  [...S.moves].sort((a,b)=>b.date.localeCompare(a.date)).forEach(x=>{h+=`<div class="row"><span>${esc(x.concept)}<br><span class="mu">${fd(x.date)}</span></span><span><b class="${x.amt<0?"neg":""}">${eur(x.amt)}</b> <button class="del" onclick="delX('${x.id}')">${bt("x"+x.id,"Borrar")}</button></span></div>`});
+  h+=`</div>`;
+ }
+ if(tab=="set"){
+  h+=`<div class="card"><b>Valores por defecto</b><div class="f"><label>Cuota inicial (€)<input type="number" step="0.01" value="${S.cfg.cuota}" onchange="setC('cuota',this.value)"></label><label>Coste campo (€)<input type="number" step="0.01" value="${S.cfg.campo}" onchange="setC('campo',this.value)"></label><label>Precio socio (€)<input type="number" step="0.01" value="${S.cfg.precio}" onchange="setC('precio',this.value)"></label><label>Precio no socio (€)<input type="number" step="0.01" value="${S.cfg.precioNS??S.cfg.precio}" onchange="setC('precioNS',this.value)"></label><label>Máx. jugadores por partido<input type="number" value="${S.cfg.max||10}" onchange="setC('max',this.value)"></label></div><p class="mu">La cuota nueva se aplica a los pagos que marques a partir de ahora. Los precios se aplican a los partidos que crees desde ahora.</p></div>
+  <div class="card"><b>Copia de seguridad</b><p class="mu">Los datos se guardan en el NAS y los socios los ven al abrir la página. Puedes pegar aquí el texto de otra copia (por ejemplo, la de la versión de Claude) para cargarla.</p><textarea id="ta">${esc(JSON.stringify(S))}</textarea><div class="f" style="margin-top:8px"><button class="pri" onclick="imp()">Cargar texto pegado</button><button class="del" onclick="reset()">${bt("reset","Borrar todo")}</button></div><p class="warn">${esc(msg)}</p></div>`;
+ }
+ $("#v").innerHTML=h;
+ if(RO){document.querySelectorAll("#v .f").forEach(e=>e.style.display="none");document.querySelectorAll("#v .card").forEach(c=>{if(c.querySelector(".f")&&!c.querySelector(".row"))c.style.display="none"});document.querySelectorAll("#v .row input").forEach(i=>i.disabled=true);document.querySelectorAll("#v button").forEach(b=>{if(b.classList.contains("del")||b.classList.contains("pri")||!b.className)b.style.display="none";else if(!b.classList.contains("sel")){b.disabled=true;b.style.pointerEvents="none"}})}
+ $("#st").textContent=(RO?"Solo lectura · se actualiza solo":"Modo editor")+(err?" · "+err:"");$("#lg").textContent=RO?"Entrar como editor":"Salir del modo editor";
+}
+(async()=>{let p=null;try{p=sessionStorage.getItem("pw")}catch(e){}
+ PHB={canUp:true,get canDel(){return !RO},
+  up:async(b,mid)=>{const f2=new FormData();f2.append("foto",b,"foto.jpg");f2.append("match",mid);if(PW)f2.append("pass",PW);const r=await fetch("api.php",{method:"POST",body:f2});if(!r.ok){let e="";try{e=(await r.json()).error}catch(x){}throw new Error(e||"error "+r.status)}},
+  del:async p=>{const r=await post({pass:PW,delfoto:p.id});if(!r.ok)throw 0},
+  load:async()=>{try{const r=await fetch("api.php?fotos=1&t="+Date.now(),{cache:"no-store"});if(r.ok){const j=await r.json();PH=j.map(x=>({id:x.f,url:"fotos/"+x.f,m:x.m,t:x.t}))}}catch(e){}}};
+ await PHB.load();
+ if(p)await tryLogin(p);else{await load(true);R()}
+ setInterval(async()=>{let ch=false;if(RO&&await load(false))ch=true;const b4=PH.map(x=>x.id).join();await PHB.load();if(PH.map(x=>x.id).join()!=b4){ch=true;lbR()}if(ch)R()},5000)})();
+</script></body></html>
