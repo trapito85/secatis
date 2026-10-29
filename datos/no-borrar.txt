@@ -1,1 +1,0 @@
-Esta carpeta guarda las cuentas (cuentas.json). No la borres.
